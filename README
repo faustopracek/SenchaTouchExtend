@@ -1,0 +1,46 @@
+Sencha Touch Extend tools
+
+Ext.gp.SearchField extend Ext.Text for open a store search window.
+
+Example:
+
+xtype: "gpsearchfield",
+id: "txt_neword_destdiv",
+store: store_anagraDestDiv,
+valueField: 'tb_id',
+displayField: 'tb_name',
+listFilterFields: [
+				{text: 'Id', value: 'tb_id'},
+				{text: 'Name', value: 'tb_name'},
+				{text: 'Address', value: 'tb_address'}
+			],
+listItemTpl : '<span>{tb_id} {tb_name}</span>',
+label: "User",
+closeBtnText:'...', // Change Search button text
+listEmptyOnShow:false, // All store items are visible at search window open 
+filterFieldSelectorBtnText:'...', // Change Selector filter fields button text
+filterTextPlaceHolder:'Cerca...',// Change search field place holder
+listeners: {
+	listItemSelected:function(record){
+		//record=store item selected
+	},
+	,closeBtnPressed:function(){
+		
+	},
+	searchBtnPressed:function(filterText){
+		// searchText=Text in filter field
+	},
+	popupClosed:function(){
+		
+	},
+	popupOpened:function(){
+		
+	},
+	valueChanged:function(){
+		
+	},
+	reset:function(){
+		// Reset component value to ''
+	}
+}
+
