@@ -1,6 +1,49 @@
+=========================
 Sencha Touch Extend tools
+=========================
 
-Ext.gp.SearchField extend Ext.Text for open a store search window.
+Ext.gp.SearchField (extend Ext.Text for open a store search window)
+-------------------------------------------------------------------
+
+CONFIG OPTIONS:
+closeBtnText: Text --> Change Search button text (Default is "Close")
+displayField: Text --> Display field name
+filterFieldSelectorBtnText: Text --> Change filter fields selector button text (Default is "Search into")
+filterTextPlaceHolder: Text --> Change search field placeholder (Default is "Search text")
+listEmptyOnShow: Boolean --> If "false" all store items are visible at search window open 
+listItemTpl: Text --> List item template
+listFilterFields: Mixed --> Filter fields visible into search window
+popupResize(width, height) --> Resize popup window (only if it is open)
+store: store --> Data store used
+valueField: Text --> Value field name
+
+
+PUBLIC METHODS:
+getActiveFilterFieldDescription: Text --> Return the active filter field description
+getActiveFilterField: Text --> Return the active filter field name
+setCloseBtnText: Text --> Get the search window close button text
+getFilterTextPlaceHolder: Text) --> Get the filter field plache holder text in the search window
+getFieldsSelectorBtnDescr: Text  --> It returns the text of the search filter field selector button
+getFilterText: Text --> Get the filter field text in the search window
+getValue: Mixed --> Get the current component value
+isPopupVisible: Boolean --> Return popup window visible state
+listScrollTo(x:Int,y:Int) --> Scroll windows results list to the specified position
+setActiveFilterField(value:Text): Set the active filter field name
+setCloseBtnText(value:Text) --> Set the search window close button text
+setFilterTextPlaceHolder(value:Text) --> Set the filter field plache holder text in the search window
+setFilterText(value:Text) --> Set the filter field text in the search window
+setValue(value:Mixed) --> Set the component value. If the value is present in the store the component displays the "displayField" value.
+showMsg(msg:Text) --> Show a message (only if the search window is open)
+startSearch --> Start search into store with filter selected (search text and search field)
+
+PUBLIC EVENTS:
+closeBtnPressed --> Fire when search window close button is pressed
+searchBtnPressed --> Fire when search window close button is pressed.
+listItemSelected(record) --> store item selected
+popupClosed --> Fire when the search window is closed
+popupOpened --> Fire when the search window is opened
+reset --> Fire when the component value is reset to '' (For to have a reset it's necessary tapHold action on the control)
+valueChanged --> Fire when the component value is changed
 
 Example:
 
@@ -16,19 +59,20 @@ listFilterFields: [
 			],
 listItemTpl : '<span>{tb_id} {tb_name}</span>',
 label: "User",
-closeBtnText:'...', // Change Search button text
-listEmptyOnShow:false, // All store items are visible at search window open 
-filterFieldSelectorBtnText:'...', // Change Selector filter fields button text
-filterTextPlaceHolder:'Cerca...',// Change search field place holder
+closeBtnText:'...', 
+listEmptyOnShow:false, 
+filterFieldSelectorBtnText:'...', 
+filterTextPlaceHolder:'...',
 listeners: {
 	listItemSelected:function(record){
-		//record=store item selected
+		alert(record.get('FieldName'));
 	},
 	,closeBtnPressed:function(){
-		
+		//If the user want change (or load) the store content before display results he can use this event and after use the "startSearch" function
+		//This event is perferct for change the other fields value in function of the change value of this
 	},
 	searchBtnPressed:function(filterText){
-		// searchText=Text in filter field
+		
 	},
 	popupClosed:function(){
 		
@@ -40,7 +84,69 @@ listeners: {
 		
 	},
 	reset:function(){
-		// Reset component value to ''
+	
 	}
 }
 
+
+
+Ext.gp.SearchToolBar (extend Ext.ToolBar for display a search toolbar with "Close" and "Search" buttons with a filter text)
+---------------------------------------------------------------------------------------------------------------------------
+
+CONFIG OPTIONS:
+closeBtnText: Text --> Change Search button text (Default is "Close")
+filterTextPlaceHolder: Text --> Change search field placeholder (Default is "Search text")
+
+PUBLIC METHODS:
+setCloseBtnText: Text --> Get the search window close button text
+getFilterTextPlaceHolder: Text) --> Get the filter field plache holder text in the search window
+getFilterText: Text --> Get the filter field text in the search window
+setCloseBtnText(value:Text) --> Set the search window close button text
+setFilterTextPlaceHolder(value:Text) --> Set the filter field plache holder text in the search window
+setFilterText(value:Text) --> Set the filter field text in the search window
+
+PUBLIC EVENTS:
+closeBtnPressed --> Fire when search window close button is pressed
+searchBtnPressed --> Fire when search window close button is pressed.
+
+
+
+
+
+Ext.gp.SearchPanel (extend Ext.Panel for display a search panel)
+----------------------------------------------------------------
+
+CONFIG OPTIONS:
+closeBtnText: Text --> Change Search button text (Default is "Close")
+displayField: Text --> Display field name
+filterFieldSelectorBtnText: Text --> Change filter fields selector button text (Default is "Search into")
+filterTextPlaceHolder: Text --> Change search field placeholder (Default is "Search text")
+listEmptyOnShow: Boolean --> If "false" all store items are visible at search window open 
+listItemTpl: Text --> List item template
+listFilterFields: Mixed --> Filter fields visible into search window
+store: store --> Data store used
+valueField: Text --> Value field name
+
+
+PUBLIC METHODS:
+getActiveFilterFieldDescription: Text --> Return the active filter field description
+getActiveFilterField: Text --> Return the active filter field name
+setCloseBtnText: Text --> Get the search window close button text
+getFilterTextPlaceHolder: Text) --> Get the filter field plache holder text in the search window
+getFieldsSelectorBtnDescr: Text  --> It returns the text of the search filter field selector button
+getFilterText: Text --> Get the filter field text in the search window
+getValue: Mixed --> Get the current component value
+listScrollTo(x:Int,y:Int) --> Scroll windows results list to the specified position
+setActiveFilterField(value:Text): Set the active filter field name
+setCloseBtnText(value:Text) --> Set the search window close button text
+setFilterTextPlaceHolder(value:Text) --> Set the filter field plache holder text in the search window
+setFilterText(value:Text) --> Set the filter field text in the search window
+setValue(value:Mixed) --> Set the component value. If the value is present in the store the component displays the "displayField" value.
+showMsg(msg:Text) --> Show a message (only if the search window is open)
+startSearch --> Start search into store with filter selected (search text and search field)
+
+PUBLIC EVENTS:
+closeBtnPressed --> Fire when search window close button is pressed
+searchBtnPressed --> Fire when search window close button is pressed.
+listItemSelected(record) --> store item selected
+valueChanged --> Fire when the component value is changed
