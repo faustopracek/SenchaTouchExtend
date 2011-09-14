@@ -150,3 +150,24 @@ closeBtnPressed --> Fire when search window close button is pressed
 searchBtnPressed --> Fire when search window close button is pressed.
 listItemSelected(record) --> store item selected
 valueChanged --> Fire when the component value is changed
+
+
+
+Ext.gp.Spinner (extend Ext.Spinner)
+-----------------------------------
+
+CONFIG OPTIONS:
+format: Text --> Number display format
+
+Example:
+
+xtype: 'gpspinnerfield',
+id: 'txt_neword_sconto',
+label: 'Sconto',
+minValue: 0.00,
+maxValue: 100.00,
+incrementValue: 1,
+value: 0.0,
+format : '0.00', <-- Format config option
+scope:this,
+cycle: true
